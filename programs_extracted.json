@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "number": 1,
+    "title": "Stack Implementation (Push, Pop, Show)",
+    "category": "Stacks & Queues",
+    "timeComplexity": "O(1) Push/Pop",
+    "spaceComplexity": "O(MAX)",
+    "aim": "Write a program to implement stack with push, pop and show operations.",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#define MAX 20\nint stack[MAX], top=-1;\nvoid push()\n{\n    int x;\n    if(top==MAX-1)\n    cout<<\"Stack Overflow\";\n    else\n    {\n        cout<<\"Enter element: \";\n        cin>>x;\n        stack[++top]=x;\n    }\n}\nvoid pop()\n{\n    if(top==-1)\n    cout<<\"Stack Underflow\";\n    else\n    cout<<\"Deleted element: \"<<stack[top--];\n}\nvoid show()\n{\n    int i;\n    if(top==-1)\n    cout<<\"Stack is empty\";\n    else\n    {\n        cout<<\"Stack: \";\n        for(i=top;i>=0;i--)\n        cout<<stack[i]<<\" \";\n    }\n}\nvoid main()\n{\n    int ch;\n    clrscr();\n    do\n    {\n        cout<<\"\\n\\n1.Push 2.Pop 3.Show 4.Exit\";\n        cout<<\"\\nEnter choice: \";\n        cin>>ch;\n        switch(ch)\n        {\n            case 1: push(); break;\n            case 2: pop(); break;\n            case 3: show(); break;\n            case 4: break;\n            default: cout<<\"Invalid choice\";\n        }\n    }while(ch!=4);\n    getch();\n}"
+  },
+  {
+    "id": 2,
+    "number": 2,
+    "title": "Quick Sort Algorithm",
+    "category": "Sorting",
+    "timeComplexity": "O(n log n) avg, O(n\u00b2) worst",
+    "spaceComplexity": "O(log n)",
+    "aim": "Write a program to sort the given elements using Quick Sort algorithm.",
+    "code": "#include<iostream.h>\n#include<conio.h>\nint a[50], n;\nvoid quicksort(int low,int high)\n{\n    int i=low, j=high, pivot=a[(low+high)/2], temp;\n    while(i<=j)\n    {\n        while(a[i]<pivot) i++;\n        while(a[j]>pivot) j--;\n        if(i<=j)\n        {\n            temp=a[i]; a[i]=a[j]; a[j]=temp;\n            i++; j--;\n        }\n    }\n    if(low<j) quicksort(low,j);\n    if(i<high) quicksort(i,high);\n}\nvoid main()\n{\n    int i;\n    clrscr();\n    cout<<\"Enter number of elements: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    quicksort(0,n-1);\n    cout<<\"Sorted array: \";\n    for(i=0;i<n;i++) cout<<a[i]<<\" \";\n    getch();\n}"
+  },
+  {
+    "id": 3,
+    "number": 3,
+    "title": "Simple Queue (Insert, Delete, Show)",
+    "category": "Stacks & Queues",
+    "timeComplexity": "O(1) Insert/Delete",
+    "spaceComplexity": "O(MAX)",
+    "aim": "Write a program to implement simple queue with insert, delete and show operation.",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#define MAX 20\nint q[MAX], front=-1, rear=-1;\nvoid insert()\n{\n    int x;\n    if(rear==MAX-1)\n    cout<<\"Queue Overflow\";\n    else\n    {\n        cout<<\"Enter element: \";\n        cin>>x;\n        if(front==-1) front=0;\n        q[++rear]=x;\n    }\n}\nvoid del()\n{\n    if(front==-1 || front>rear)\n    cout<<\"Queue Underflow\";\n    else\n    {\n        cout<<\"Deleted element: \"<<q[front++];\n        if(front>rear) front=rear=-1;\n    }\n}\nvoid show()\n{\n    int i;\n    if(front==-1)\n    cout<<\"Queue is empty\";\n    else\n    {\n        cout<<\"Queue: \";\n        for(i=front;i<=rear;i++) cout<<q[i]<<\" \";\n    }\n}\nvoid main()\n{\n    int ch;\n    clrscr();\n    do\n    {\n        cout<<\"\\n\\n1.Insert 2.Delete 3.Show 4.Exit\";\n        cout<<\"\\nEnter choice: \";\n        cin>>ch;\n        switch(ch)\n        {\n            case 1: insert(); break;\n            case 2: del(); break;\n            case 3: show(); break;\n            case 4: break;\n            default: cout<<\"Invalid choice\";\n        }\n    }while(ch!=4);\n    getch();\n}"
+  },
+  {
+    "id": 4,
+    "number": 4,
+    "title": "Merge Sort Algorithm",
+    "category": "Sorting",
+    "timeComplexity": "O(n log n)",
+    "spaceComplexity": "O(n)",
+    "aim": "Merge Sort",
+    "code": "#include<iostream.h>\n#include<conio.h>\nint a[50], temp[50], n;\nvoid merge(int low,int mid,int high)\n{\n    int i=low,j=mid+1,k=low;\n    while(i<=mid && j<=high)\n    {\n        if(a[i]<a[j]) temp[k++]=a[i++];\n        else temp[k++]=a[j++];\n    }\n    while(i<=mid) temp[k++]=a[i++];\n    while(j<=high) temp[k++]=a[j++];\n    for(i=low;i<=high;i++) a[i]=temp[i];\n}\nvoid mergesort(int low,int high)\n{\n    int mid;\n    if(low<high)\n    {\n        mid=(low+high)/2;\n        mergesort(low,mid);\n        mergesort(mid+1,high);\n        merge(low,mid,high);\n    }\n}\nvoid main()\n{\n    int i;\n    clrscr();\n    cout<<\"Enter number of elements: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    mergesort(0,n-1);\n    cout<<\"Sorted array: \";\n    for(i=0;i<n;i++) cout<<a[i]<<\" \";\n    getch();\n}"
+  },
+  {
+    "id": 5,
+    "number": 5,
+    "title": "Infix to Postfix Conversion",
+    "category": "Expressions",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "aim": "Infix to Postfix",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#include<string.h>\n#include<ctype.h>\nchar st[50], infix[50], postfix[50];\nint top=-1;\nint priority(char c)\n{\n    if(c=='+' || c=='-') return 1;\n    if(c=='*' || c=='/') return 2;\n    if(c=='^') return 3;\n    return 0;\n}\nvoid main()\n{\n    int i=0,j=0;\n    char c;\n    clrscr();\n    cout<<\"Enter infix expression: \";\n    cin>>infix;\n    while(infix[i]!='\\0')\n    {\n        c=infix[i];\n        if(isalnum(c))\n        postfix[j++]=c;\n        else if(c=='(')\n        st[++top]=c;\n        else if(c==')')\n        {\n            while(top!=-1 && st[top]!='(')\n            postfix[j++]=st[top--];\n            if(top!=-1) top--;\n        }\n        else\n        {\n            while(top!=-1 && priority(st[top])>=priority(c))\n            postfix[j++]=st[top--];\n            st[++top]=c;\n        }\n        i++;\n    }\n    while(top!=-1) postfix[j++]=st[top--];\n    postfix[j]='\\0';\n    cout<<\"Postfix expression: \"<<postfix;\n    getch();\n}"
+  },
+  {
+    "id": 6,
+    "number": 6,
+    "title": "Bubble Sort Algorithm",
+    "category": "Sorting",
+    "timeComplexity": "O(n\u00b2)",
+    "spaceComplexity": "O(1)",
+    "aim": "Bubble Sort",
+    "code": "#include<iostream.h>\n#include<conio.h>\nvoid main()\n{\n    int a[50],n,i,j,temp;\n    clrscr();\n    cout<<\"Enter number of elements: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    for(i=0;i<n-1;i++)\n    for(j=0;j<n-i-1;j++)\n    if(a[j]>a[j+1])\n    {\n        temp=a[j]; a[j]=a[j+1]; a[j+1]=temp;\n    }\n    cout<<\"Sorted array: \";\n    for(i=0;i<n;i++) cout<<a[i]<<\" \";\n    getch();\n}"
+  },
+  {
+    "id": 7,
+    "number": 7,
+    "title": "Prefix Expression Evaluation",
+    "category": "Expressions",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(n)",
+    "aim": "Polish Notation (Prefix) Evaluation",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#include<ctype.h>\n#include<string.h>\nint st[50], top=-1;\nint power(int a,int b)\n{\n    int r=1,i;\n    for(i=0;i<b;i++) r=r*a;\n    return r;\n}\nint operation(int a,int b,char op)\n{\n    switch(op)\n    {\n        case '+': return a+b;\n        case '-': return a-b;\n        case '*': return a*b;\n        case '/': return a/b;\n        case '^': return power(a,b);\n    }\n    return 0;\n}\nvoid main()\n{\n    char exp[50],c;\n    int i,n,a,b;\n    clrscr();\n    cout<<\"Enter prefix expression (single digit operands): \";\n    cin>>exp;\n    n=strlen(exp);\n    for(i=n-1;i>=0;i--)\n    {\n        c=exp[i];\n        if(isdigit(c))\n        st[++top]=c-'0';\n        else\n        {\n            a=st[top--];\n            b=st[top--];\n            st[++top]=operation(a,b,c);\n        }\n    }\n    cout<<\"Result: \"<<st[top];\n    getch();\n}"
+  },
+  {
+    "id": 8,
+    "number": 8,
+    "title": "Insertion Sort Algorithm",
+    "category": "Sorting",
+    "timeComplexity": "O(n\u00b2)",
+    "spaceComplexity": "O(1)",
+    "aim": "Write a program to sort the given elements using Insertion Sort algorithm.",
+    "code": "#include<iostream.h>\n#include<conio.h>\nvoid main()\n{\n    int a[50],n,i,j,key;\n    clrscr();\n    cout<<\"Enter number of elements: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    for(i=1;i<n;i++)\n    {\n        key=a[i];\n        j=i-1;\n        while(j>=0 && a[j]>key)\n        {\n            a[j+1]=a[j];\n            j--;\n        }\n        a[j+1]=key;\n    }\n    cout<<\"Sorted array: \";\n    for(i=0;i<n;i++) cout<<a[i]<<\" \";\n    getch();\n}"
+  },
+  {
+    "id": 9,
+    "number": 9,
+    "title": "Tower of Hanoi Problem",
+    "category": "Recursion",
+    "timeComplexity": "O(2\u207f)",
+    "spaceComplexity": "O(n)",
+    "aim": "Tower of Hanoi",
+    "code": "#include<iostream.h>\n#include<conio.h>\nvoid hanoi(int n,char source,char aux,char dest)\n{\n    if(n==1)\n    {\n        cout<<\"Move disk 1 from \"<<source<<\" to \"<<dest<<\"\\n\";\n        return;\n    }\n    hanoi(n-1,source,dest,aux);\n    cout<<\"Move disk \"<<n<<\" from \"<<source<<\" to \"<<dest<<\"\\n\";\n    hanoi(n-1,aux,source,dest);\n}\nvoid main()\n{\n    int n;\n    clrscr();\n    cout<<\"Enter number of disks: \";\n    cin>>n;\n    hanoi(n,'A','B','C');\n    getch();\n}"
+  },
+  {
+    "id": 10,
+    "number": 10,
+    "title": "Selection Sort Algorithm",
+    "category": "Sorting",
+    "timeComplexity": "O(n\u00b2)",
+    "spaceComplexity": "O(1)",
+    "aim": "Write a program to sort the given elements using Selection Sort algorithm.",
+    "code": "#include<iostream.h>\n#include<conio.h>\nvoid main()\n{\n    int a[50],n,i,j,min,temp;\n    clrscr();\n    cout<<\"Enter number of elements: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    for(i=0;i<n-1;i++)\n    {\n        min=i;\n        for(j=i+1;j<n;j++)\n        if(a[j]<a[min]) min=j;\n        temp=a[i]; a[i]=a[min]; a[min]=temp;\n    }\n    cout<<\"Sorted array: \";\n    for(i=0;i<n;i++) cout<<a[i]<<\" \";\n    getch();\n}"
+  },
+  {
+    "id": 11,
+    "number": 11,
+    "title": "Linear Search Algorithm",
+    "category": "Searching",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)",
+    "aim": "Write a program to search the element in given array using linear search algorithm.",
+    "code": "#include<iostream.h>\n#include<conio.h>\nvoid main()\n{\n    int a[50],n,key,i,found=0;\n    clrscr();\n    cout<<\"Enter number of elements: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    cout<<\"Enter element to search: \";\n    cin>>key;\n    for(i=0;i<n;i++)\n    if(a[i]==key)\n    {\n        cout<<\"Element found at position \"<<i+1;\n        found=1;\n        break;\n    }\n    if(!found) cout<<\"Element not found\";\n    getch();\n}"
+  },
+  {
+    "id": 12,
+    "number": 12,
+    "title": "Depth First Search (DFS)",
+    "category": "Graphs",
+    "timeComplexity": "O(V\u00b2)",
+    "spaceComplexity": "O(V)",
+    "aim": "DFS Graph Traversal",
+    "code": "#include<iostream.h>\n#include<conio.h>\nint a[10][10], visited[10], n;\nvoid dfs(int v)\n{\n    int i;\n    visited[v]=1;\n    cout<<v<<\" \";\n    for(i=0;i<n;i++)\n    if(a[v][i] && !visited[i])\n    dfs(i);\n}\nvoid main()\n{\n    int i,j,start;\n    clrscr();\n    cout<<\"Enter number of vertices: \";\n    cin>>n;\n    cout<<\"Enter adjacency matrix:\\n\";\n    for(i=0;i<n;i++)\n    for(j=0;j<n;j++)\n    cin>>a[i][j];\n    for(i=0;i<n;i++) visited[i]=0;\n    cout<<\"Enter starting vertex (0 to \"<<n-1<<\"): \";\n    cin>>start;\n    cout<<\"DFS traversal: \";\n    dfs(start);\n    getch();\n}"
+  },
+  {
+    "id": 13,
+    "number": 13,
+    "title": "Binary Search Algorithm",
+    "category": "Searching",
+    "timeComplexity": "O(log n)",
+    "spaceComplexity": "O(1)",
+    "aim": "Write a program to search the element in given array using Binary search algorithm.",
+    "code": "#include<iostream.h>\n#include<conio.h>\nvoid main()\n{\n    int a[50],n,key,low,high,mid,found=0,i;\n    clrscr();\n    cout<<\"Enter number of elements: \";\n    cin>>n;\n    cout<<\"Enter elements in sorted order: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    cout<<\"Enter element to search: \";\n    cin>>key;\n    low=0; high=n-1;\n    while(low<=high)\n    {\n        mid=(low+high)/2;\n        if(a[mid]==key)\n        {\n            cout<<\"Element found at position \"<<mid+1;\n            found=1;\n            break;\n        }\n        else if(a[mid]<key) low=mid+1;\n        else high=mid-1;\n    }\n    if(!found) cout<<\"Element not found\";\n    getch();\n}"
+  },
+  {
+    "id": 14,
+    "number": 14,
+    "title": "Breadth First Search (BFS)",
+    "category": "Graphs",
+    "timeComplexity": "O(V\u00b2)",
+    "spaceComplexity": "O(V)",
+    "aim": "BFS Graph Traversal",
+    "code": "#include<iostream.h>\n#include<conio.h>\nint a[10][10], visited[10], q[20];\nint n,front=-1,rear=-1;\nvoid bfs(int start)\n{\n    int i,v;\n    visited[start]=1;\n    q[++rear]=start;\n    while(front<rear)\n    {\n        v=q[++front];\n        cout<<v<<\" \";\n        for(i=0;i<n;i++)\n        if(a[v][i] && !visited[i])\n        {\n            visited[i]=1;\n            q[++rear]=i;\n        }\n    }\n}\nvoid main()\n{\n    int i,j,start;\n    clrscr();\n    cout<<\"Enter number of vertices: \";\n    cin>>n;\n    cout<<\"Enter adjacency matrix:\\n\";\n    for(i=0;i<n;i++)\n    for(j=0;j<n;j++)\n    cin>>a[i][j];\n    for(i=0;i<n;i++) visited[i]=0;\n    cout<<\"Enter starting vertex (0 to \"<<n-1<<\"): \";\n    cin>>start;\n    cout<<\"BFS traversal: \";\n    bfs(start);\n    getch();\n}"
+  },
+  {
+    "id": 15,
+    "number": 15,
+    "title": "Circular Queue (Insert, Delete, Show)",
+    "category": "Stacks & Queues",
+    "timeComplexity": "O(1)",
+    "spaceComplexity": "O(MAX)",
+    "aim": "Write a program to implement circular queue with insert, delete and show operation.",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#define MAX 10\nint q[MAX],front=-1,rear=-1;\nvoid insert()\n{\n    int x;\n    if((rear+1)%MAX==front)\n    cout<<\"Circular Queue Overflow\";\n    else\n    {\n        cout<<\"Enter element: \";\n        cin>>x;\n        if(front==-1) front=rear=0;\n        else rear=(rear+1)%MAX;\n        q[rear]=x;\n    }\n}\nvoid del()\n{\n    if(front==-1)\n    cout<<\"Circular Queue Underflow\";\n    else\n    {\n        cout<<\"Deleted element: \"<<q[front];\n        if(front==rear) front=rear=-1;\n        else front=(front+1)%MAX;\n    }\n}\nvoid show()\n{\n    int i;\n    if(front==-1) cout<<\"Queue is empty\";\n    else\n    {\n        cout<<\"Queue: \";\n        i=front;\n        while(1)\n        {\n            cout<<q[i]<<\" \";\n            if(i==rear) break;\n            i=(i+1)%MAX;\n        }\n    }\n}\nvoid main()\n{\n    int ch;\n    clrscr();\n    do\n    {\n        cout<<\"\\n\\n1.Insert 2.Delete 3.Show 4.Exit\";\n        cout<<\"\\nEnter choice: \";\n        cin>>ch;\n        switch(ch)\n        {\n            case 1: insert(); break;\n            case 2: del(); break;\n            case 3: show(); break;\n        }\n    }while(ch!=4);\n    getch();\n}"
+  },
+  {
+    "id": 16,
+    "number": 16,
+    "title": "Prim's Minimum Spanning Tree (MST)",
+    "category": "Graphs",
+    "timeComplexity": "O(V\u00b2)",
+    "spaceComplexity": "O(V)",
+    "aim": "2. Write a program to find minimum spanning tree using prims algorithm.",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#define INF 9999\nvoid main()\n{\n    int cost[10][10],selected[10]={0};\n    int n,i,j,edges=0,x,y,min,total=0;\n    clrscr();\n    cout<<\"Enter number of vertices: \";\n    cin>>n;\n    cout<<\"Enter cost adjacency matrix (0 for no edge):\\n\";\n    for(i=0;i<n;i++)\n    for(j=0;j<n;j++)\n    {\n        cin>>cost[i][j];\n        if(cost[i][j]==0) cost[i][j]=INF;\n    }\n    selected[0]=1;\n    cout<<\"Edges in MST:\\n\";\n    while(edges<n-1)\n    {\n        min=INF; x=y=0;\n        for(i=0;i<n;i++)\n        if(selected[i])\n        for(j=0;j<n;j++)\n        if(!selected[j] && cost[i][j]<min)\n        {\n            min=cost[i][j];\n            x=i; y=j;\n        }\n        cout<<x<<\" - \"<<y<<\" : \"<<min<<\"\\n\";\n        total+=min;\n        selected[y]=1;\n        edges++;\n    }\n    cout<<\"Minimum cost = \"<<total;\n    getch();\n}"
+  },
+  {
+    "id": 17,
+    "number": 17,
+    "title": "Singly Linked List (Insert, Delete, Show)",
+    "category": "Linked Lists",
+    "timeComplexity": "O(n) Insert, O(1) Del",
+    "spaceComplexity": "O(n)",
+    "aim": "Write a program to implement single link list with insert, delete and show operation.",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#include<alloc.h>\nstruct node\n{\n    int data;\n    node *next;\n};\nnode *head=NULL;\nvoid insert()\n{\n    node *p;\n    p=(node*)malloc(sizeof(node));\n    cout<<\"Enter data: \";\n    cin>>p->data;\n    p->next=NULL;\n    if(head==NULL) head=p;\n    else\n    {\n        node *q=head;\n        while(q->next!=NULL) q=q->next;\n        q->next=p;\n    }\n}\nvoid del()\n{\n    node *p;\n    if(head==NULL)\n    cout<<\"List is empty\";\n    else\n    {\n        p=head;\n        head=head->next;\n        cout<<\"Deleted: \"<<p->data;\n        free(p);\n    }\n}\nvoid show()\n{\n    node *p=head;\n    if(p==NULL) cout<<\"List is empty\";\n    else\n    {\n        cout<<\"List: \";\n        while(p!=NULL)\n        {\n            cout<<p->data<<\" \";\n            p=p->next;\n        }\n    }\n}\nvoid main()\n{\n    int ch;\n    clrscr();\n    do\n    {\n        cout<<\"\\n\\n1.Insert 2.Delete 3.Show 4.Exit\";\n        cout<<\"\\nEnter choice: \";\n        cin>>ch;\n        switch(ch)\n        {\n            case 1: insert(); break;\n            case 2: del(); break;\n            case 3: show(); break;\n        }\n    }while(ch!=4);\n    getch();\n}"
+  },
+  {
+    "id": 18,
+    "number": 18,
+    "title": "Doubly Linked List (Insert, Delete, Show)",
+    "category": "Linked Lists",
+    "timeComplexity": "O(n) Insert, O(1) Del",
+    "spaceComplexity": "O(n)",
+    "aim": "Doubly Linked List \u2013 Insert, Delete and Show",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#include<alloc.h>\nstruct node\n{\n    int data;\n    node *prev,*next;\n};\nnode *head=NULL;\nvoid insert()\n{\n    node *p,*q;\n    p=(node*)malloc(sizeof(node));\n    cout<<\"Enter data: \";\n    cin>>p->data;\n    p->prev=NULL;\n    p->next=NULL;\n    if(head==NULL) head=p;\n    else\n    {\n        q=head;\n        while(q->next!=NULL) q=q->next;\n        q->next=p;\n        p->prev=q;\n    }\n}\nvoid del()\n{\n    node *p;\n    if(head==NULL)\n    cout<<\"List is empty\";\n    else\n    {\n        p=head;\n        head=head->next;\n        if(head!=NULL) head->prev=NULL;\n        cout<<\"Deleted: \"<<p->data;\n        free(p);\n    }\n}\nvoid show()\n{\n    node *p=head;\n    if(p==NULL) cout<<\"List is empty\";\n    else\n    {\n        cout<<\"List: \";\n        while(p!=NULL)\n        {\n            cout<<p->data<<\" \";\n            p=p->next;\n        }\n    }\n}\nvoid main()\n{\n    int ch;\n    clrscr();\n    do\n    {\n        cout<<\"\\n\\n1.Insert 2.Delete 3.Show 4.Exit\";\n        cout<<\"\\nEnter choice: \";\n        cin>>ch;\n        switch(ch)\n        {\n            case 1: insert(); break;\n            case 2: del(); break;\n            case 3: show(); break;\n        }\n    }while(ch!=4);\n    getch();\n}"
+  },
+  {
+    "id": 19,
+    "number": 19,
+    "title": "Binary Search Tree (Create, Delete, Show)",
+    "category": "Trees",
+    "timeComplexity": "O(log n) avg, O(n) worst",
+    "spaceComplexity": "O(h)",
+    "aim": "Write a program to implement Binary search tree with create, delete and show operation.",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#include<alloc.h>\nstruct node\n{\n    int data;\n    node *left,*right;\n};\nnode* create(int x)\n{\n    node *p=(node*)malloc(sizeof(node));\n    p->data=x; p->left=p->right=NULL;\n    return p;\n}\nnode* insert(node *root,int x)\n{\n    if(root==NULL) return create(x);\n    if(x<root->data) root->left=insert(root->left,x);\n    else if(x>root->data) root->right=insert(root->right,x);\n    return root;\n}\nnode* minNode(node *root)\n{\n    while(root->left!=NULL) root=root->left;\n    return root;\n}\nnode* del(node *root,int x)\n{\n    node *p;\n    if(root==NULL) return root;\n    if(x<root->data) root->left=del(root->left,x);\n    else if(x>root->data) root->right=del(root->right,x);\n    else\n    {\n        if(root->left==NULL)\n        {\n            p=root->right; free(root); return p;\n        }\n        if(root->right==NULL)\n        {\n            p=root->left; free(root); return p;\n        }\n        p=minNode(root->right);\n        root->data=p->data;\n        root->right=del(root->right,p->data);\n    }\n    return root;\n}\nvoid inorder(node *root)\n{\n    if(root!=NULL)\n    {\n        inorder(root->left);\n        cout<<root->data<<\" \";\n        inorder(root->right);\n    }\n}\nvoid main()\n{\n    node *root=NULL;\n    int ch,x;\n    clrscr();\n    do\n    {\n        cout<<\"\\n\\n1.Create/Insert 2.Delete 3.Show 4.Exit\";\n        cout<<\"\\nEnter choice: \";\n        cin>>ch;\n        switch(ch)\n        {\n            case 1: cout<<\"Enter value: \"; cin>>x;\n            root=insert(root,x); break;\n            case 2: cout<<\"Enter value: \"; cin>>x;\n            root=del(root,x); break;\n            case 3: cout<<\"BST (Inorder): \"; inorder(root); break;\n        }\n    }while(ch!=4);\n    getch();\n}"
+  },
+  {
+    "id": 20,
+    "number": 20,
+    "title": "BST Traversals (Inorder, Preorder, Postorder)",
+    "category": "Trees",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(h)",
+    "aim": "BST Tree Traversals \u2013 Inorder, Preorder, Postorder",
+    "code": "#include<iostream.h>\n#include<conio.h>\n#include<alloc.h>\nstruct node\n{\n    int data;\n    node *left,*right;\n};\nnode* insert(node *root,int x)\n{\n    node *p;\n    if(root==NULL)\n    {\n        p=(node*)malloc(sizeof(node));\n        p->data=x; p->left=p->right=NULL;\n        return p;\n    }\n    if(x<root->data) root->left=insert(root->left,x);\n    else root->right=insert(root->right,x);\n    return root;\n}\nvoid inorder(node *r)\n{\n    if(r!=NULL)\n    {\n        inorder(r->left); cout<<r->data<<\" \"; inorder(r->right);\n    }\n}\nvoid preorder(node *r)\n{\n    if(r!=NULL)\n    {\n        cout<<r->data<<\" \"; preorder(r->left); preorder(r->right);\n    }\n}\nvoid postorder(node *r)\n{\n    if(r!=NULL)\n    {\n        postorder(r->left); postorder(r->right); cout<<r->data<<\" \";\n    }\n}\nvoid main()\n{\n    node *root=NULL;\n    int n,i,x;\n    clrscr();\n    cout<<\"Enter number of nodes: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++)\n    {\n        cin>>x;\n        root=insert(root,x);\n    }\n    cout<<\"Inorder: \";\n    inorder(root);\n    cout<<\"\\nPreorder: \";\n    preorder(root);\n    cout<<\"\\nPostorder: \";\n    postorder(root);\n    getch();\n}"
+  },
+  {
+    "id": 21,
+    "number": 21,
+    "title": "Array Operations (Insert, Delete, Display)",
+    "category": "Arrays",
+    "timeComplexity": "O(n) Insert/Delete",
+    "spaceComplexity": "O(MAX)",
+    "aim": "Array \u2013 Insert, Delete and Display",
+    "code": "#include<iostream.h>\n#include<conio.h>\nvoid main()\n{\n    int a[50],n,i,pos,item,ch;\n    clrscr();\n    cout<<\"Enter number of elements: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    do\n    {\n        cout<<\"\\n\\n1.Insert 2.Delete 3.Display 4.Exit\";\n        cout<<\"\\nEnter choice: \";\n        cin>>ch;\n        if(ch==1)\n        {\n            cout<<\"Enter position (1 to \"<<n+1<<\"): \";\n            cin>>pos;\n            cout<<\"Enter item: \";\n            cin>>item;\n            for(i=n;i>=pos;i--) a[i]=a[i-1];\n            a[pos-1]=item;\n            n++;\n        }\n        else if(ch==2)\n        {\n            cout<<\"Enter position: \";\n            cin>>pos;\n            if(pos>=1 && pos<=n)\n            {\n                for(i=pos-1;i<n-1;i++) a[i]=a[i+1];\n                n--;\n            }\n        }\n        else if(ch==3)\n        {\n            cout<<\"Array: \";\n            for(i=0;i<n;i++) cout<<a[i]<<\" \";\n        }\n    }while(ch!=4);\n    getch();\n}"
+  },
+  {
+    "id": 22,
+    "number": 22,
+    "title": "Radix Sort Algorithm",
+    "category": "Sorting",
+    "timeComplexity": "O(d \u00b7 (n + k))",
+    "spaceComplexity": "O(n + k)",
+    "aim": "Radix Sort",
+    "code": "#include<iostream.h>\n#include<conio.h>\nint getMax(int a[],int n)\n{\n    int max=a[0],i;\n    for(i=1;i<n;i++)\n    if(a[i]>max) max=a[i];\n    return max;\n}\nvoid countSort(int a[],int n,int exp)\n{\n    int output[50],count[10]={0};\n    int i;\n    for(i=0;i<n;i++) count[(a[i]/exp)%10]++;\n    for(i=1;i<10;i++) count[i]+=count[i-1];\n    for(i=n-1;i>=0;i--)\n    {\n        output[count[(a[i]/exp)%10]-1]=a[i];\n        count[(a[i]/exp)%10]--;\n    }\n    for(i=0;i<n;i++) a[i]=output[i];\n}\nvoid main()\n{\n    int a[50],n,i,max,exp;\n    clrscr();\n    cout<<\"Enter number of non-negative elements: \";\n    cin>>n;\n    cout<<\"Enter elements: \";\n    for(i=0;i<n;i++) cin>>a[i];\n    max=getMax(a,n);\n    for(exp=1;max/exp>0;exp*=10)\n    countSort(a,n,exp);\n    cout<<\"Sorted array: \";\n    for(i=0;i<n;i++) cout<<a[i]<<\" \";\n    getch();\n}"
+  }
+]

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures Interactive Lab Workbench &amp; Turbo C++ Runner</title>
+    <meta name="description" content="Executable Data Structures practicals lab workbench featuring all 22 Turbo C++ programs with live execution, animated visualizers, and interactive DOS console.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="app-header">
+        <div class="brand-section">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">☰</button>
+            <div class="brand-logo">⚡</div>
+            <div>
+                <h1 class="brand-title">DS Practical Lab Workbench</h1>
+                <div class="brand-subtitle">Turbo C++ Lab Manual &bull; 22 Live Executable Algorithms</div>
+            </div>
+        </div>
+        <div class="header-badges">
+            <div class="stat-pill">
+                <span>🔥</span> 22 Executable Practicals
+            </div>
+            <div class="stat-pill" style="border-color: rgba(52, 211, 153, 0.3); color: #6ee7b7; background: rgba(52, 211, 153, 0.1);">
+                <span>🟢</span> Browser Runtime Ready
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="app-sidebar" id="sidebar">
+            <div class="sidebar-search-box">
+                <div class="search-input-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchPrograms" class="app-input" placeholder="Search 22 practicals (e.g. stack, sort, bst)..." spellcheck="false" autocomplete="off" />
+                </div>
+            </div>
+
+            <!-- Category Pills -->
+            <div class="sidebar-filters-wrap" id="categoryFilters">
+                <!-- Dynamically generated category pills -->
+            </div>
+
+            <!-- Program List -->
+            <nav class="program-list" id="programList" aria-label="Practical Programs List">
+                <!-- Dynamically populated program cards -->
+            </nav>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-content">
+            <!-- Program Hero Header -->
+            <section class="program-hero" id="programHero">
+                <div class="hero-left">
+                    <div class="hero-meta-row">
+                        <span class="badge badge-num" id="currentNum">PRACTICAL #1</span>
+                        <span class="badge badge-category" id="currentCategoryBadge">Stacks &amp; Queues</span>
+                        <span class="badge badge-complexity" title="Time Complexity">⏱️ <span id="currentTimeComplexity">O(1)</span></span>
+                        <span class="badge badge-complexity" title="Space Complexity">💾 <span id="currentSpaceComplexity">O(MAX)</span></span>
+                    </div>
+                    <h2 class="hero-title" id="currentTitle">Stack Implementation (Push, Pop, Show)</h2>
+                    <p class="hero-aim" id="currentAim">Write a program to implement stack with push, pop and show operations.</p>
+                </div>
+                <div class="hero-actions">
+                    <button class="action-btn btn-secondary" id="copyCodeBtn" title="Copy original Turbo C++ code">
+                        <span>📋</span> Copy C++ Code
+                    </button>
+                    <button class="action-btn btn-outline" id="downloadCppBtn" title="Download .cpp file for Turbo C++ / VS Code">
+                        <span>💾</span> Download .cpp
+                    </button>
+                </div>
+            </section>
+
+            <!-- Navigation Tabs -->
+            <nav class="tabs-navigation" aria-label="Workbench Views">
+                <button class="tab-btn active" data-tab="tabVisualizer">
+                    <span>⚡</span> Interactive Visualizer &amp; Runner
+                </button>
+                <button class="tab-btn" data-tab="tabCode">
+                    <span>💻</span> Turbo C++ Source Code
+                </button>
+                <button class="tab-btn" data-tab="tabTerminal">
+                    <span>📟</span> DOS Console Simulator
+                </button>
+                <button class="tab-btn" data-tab="tabTheory">
+                    <span>📖</span> Algorithm &amp; Complexities
+                </button>
+            </nav>
+
+            <!-- TAB 1: Interactive Visualizer & Runner -->
+            <div class="tab-pane active" id="tabVisualizer">
+                <div class="execution-workspace">
+                    <!-- Left: Interactive Canvas -->
+                    <div id="visualizerCanvas">
+                        <!-- Populated dynamically by DSEngine -->
+                    </div>
+
+                    <!-- Right: Live Execution Log -->
+                    <div class="execution-log-panel">
+                        <div class="panel-header">
+                            <span>📡 Live Execution Console</span>
+                            <button class="action-btn btn-outline" id="clearLogBtn" style="padding: 0.2rem 0.5rem; font-size: 0.72rem;">Clear</button>
+                        </div>
+                        <div class="log-scroll-area" id="executionLog">
+                            <div class="log-entry log-info">
+                                <span class="log-time">[Ready]</span> Engine initialized. Interact with controls on the left to execute algorithm.
+                            </div>
+                        </div>
+                        <div class="log-controls">
+                            <div class="speed-ctrl">
+                                <span>Speed:</span>
+                                <input type="range" id="speedSlider" class="slider" min="100" max="1200" step="50" value="500" />
+                                <span id="speedValue">500ms</span>
+                            </div>
+                            <span style="font-size: 0.7rem; color: var(--text-dim);">Live Step Tracer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: Source Code -->
+            <div class="tab-pane" id="tabCode">
+                <div class="code-container">
+                    <div class="code-container-header">
+                        <span>📄 Turbo C++ (C++ 98 / Borland Turbo C++ 3.0 Compatible)</span>
+                        <span>Syntax Highlighted</span>
+                    </div>
+                    <pre class="code-pre" id="cppCodeBlock"></pre>
+                </div>
+            </div>
+
+            <!-- TAB 3: Turbo C++ DOS Simulator -->
+            <div class="tab-pane" id="tabTerminal">
+                <div id="terminalContainer">
+                    <!-- TurboTerminal loads here -->
+                </div>
+            </div>
+
+            <!-- TAB 4: Theory & Complexity -->
+            <div class="tab-pane" id="tabTheory">
+                <div class="theory-card">
+                    <h3>💡 Conceptual Overview</h3>
+                    <p id="theoryDescription">Loading description...</p>
+                </div>
+
+                <div class="theory-card" style="margin-top: 1rem;">
+                    <h3>⚙️ Algorithm Steps</h3>
+                    <ol class="theory-algo-list" id="theoryAlgorithm">
+                        <li>Loading algorithm...</li>
+                    </ol>
+                </div>
+
+                <div class="theory-card" style="margin-top: 1rem;">
+                    <h3>📊 Complexity Analysis</h3>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 0.75rem;">
+                        <div class="meta-pill" style="padding: 0.6rem 1rem;">
+                            Time Complexity: <strong id="theoryTime" style="color: #38bdf8;">—</strong>
+                        </div>
+                        <div class="meta-pill" style="padding: 0.6rem 1rem;">
+                            Space Complexity: <strong id="theorySpace" style="color: #a855f7;">—</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="programs-data.js"></script>
+    <script src="terminal.js"></script>
+    <script src="engine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
